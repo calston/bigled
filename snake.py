@@ -5,6 +5,7 @@ import display
 import pygame
 import signal
 import sys
+import operator
 
 
 class Snake(display.App):
@@ -21,8 +22,7 @@ class Snake(display.App):
     def newGame(self):
         self.snake = [(13, 8), (12, 8), (11, 8), (10, 8)]
         self.apples = [self.randomApple() for i in range(3)]
-        self.x_dir = 1
-        self.y_dir = 0
+        self.dir_vector = [1, 0]
         self.nutrition = len(self.snake)
         self.framerate = 4
 
@@ -46,7 +46,8 @@ class Snake(display.App):
 
     def draw(self, surface):
         self.eventBlock = False
-        head = (self.snake[0][0] + self.x_dir, self.snake[0][1] + self.y_dir)
+
+        head = tuple(map(operator.add, self.snake[0], self.dir_vector))
 
         if (head[0] >= self.w) or (head[0] < 0) or (head[1] >= self.h) or (head[1] < 0):
             self.newGame()
@@ -79,14 +80,12 @@ class Snake(display.App):
             return 
 
         if event.type == pygame.JOYAXISMOTION:
-            if (event.axis == 0 and event.value != 0 and self.x_dir == 0):
-                self.x_dir = int(event.value)
-                self.y_dir = 0
+            if (event.axis == 0 and event.value != 0 and self.dir_vector[0] == 0):
+                self.dir_vector = [int(event.value), 0]
                 self.eventBlock = True
 
-            elif (event.axis == 1 and event.value != 0 and self.y_dir == 0):
-                self.y_dir = int(event.value)
-                self.x_dir = 0
+            elif (event.axis == 1 and event.value != 0 and self.dir_vector[1] == 0):
+                self.dir_vector = [0, int(event.value)]
                 self.eventBlock = True
 
 if __name__=="__main__":
