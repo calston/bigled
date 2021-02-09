@@ -5,7 +5,7 @@ import display
 import pygame
 import signal
 import sys
-
+import yaml
 
 class Clock(display.App):
     framerate = 3
@@ -32,12 +32,14 @@ class Clock(display.App):
 
         self.font = pygame.font.Font("fonts/DejaVuSansMono.ttf", 8)
 
+        self.config = yaml.load(open('config.yml').read(), Loader=yaml.BaseLoader)
+
     def getWeather(self):
         if (time.time() - self.weather_age) > 120:
             try:
                 uri = "http://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s" % (
-                    "Reading,uk",
-                    "4747f8a79e8b7435dd7a55950d90600a"
+                    self.config['weather']['location'],
+                    self.config['weather']['token']
                 )
                 r = requests.get(uri)
                 self.weather = r.json()
