@@ -27,10 +27,11 @@ class Display(object):
 class App(object):
     framerate = 20
 
-    def __init__(self, disp):
-        pygame.display.init()
-        pygame.joystick.init()
-        pygame.font.init()
+    def __init__(self, disp, init=True):
+        if init:
+            pygame.display.init()
+            pygame.joystick.init()
+            pygame.font.init()
 
         self.display = disp
         self.running = True
@@ -59,6 +60,9 @@ class App(object):
                 if event.type == pygame.JOYDEVICEADDED:
                     js = pygame.joystick.Joystick(event.device_index)
                     js.init()
+
+                if (event.type == pygame.JOYBUTTONDOWN) and (event.button == 9):
+                        self.running = False
 
             self.display.blank()
             self.draw(self.display.surface)

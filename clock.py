@@ -1,4 +1,3 @@
-import serial
 import time
 import requests
 import display
@@ -9,8 +8,9 @@ import yaml
 
 class Clock(display.App):
     framerate = 3
-    def __init__(self, d):
-        display.App.__init__(self, d)
+
+    def __init__(self, *a, **kw):
+        display.App.__init__(self, *a, **kw)
 
         self.weather_icons = {
             'Fog': pygame.image.load('images/fog.png'),

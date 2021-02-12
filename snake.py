@@ -1,6 +1,5 @@
 import random
 import time
-import requests
 import display
 import pygame
 import signal
@@ -10,8 +9,8 @@ import operator
 
 class Snake(display.App):
     framerate = 3
-    def __init__(self, d):
-        display.App.__init__(self, d)
+    def __init__(self, *a, **kw):
+        display.App.__init__(self, *a, **kw)
 
         self.w = 80
         self.h = 16

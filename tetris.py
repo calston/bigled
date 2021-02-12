@@ -1,7 +1,5 @@
 import pygame
-import serial
 import time
-import requests
 import display
 import random
 import signal
@@ -59,8 +57,9 @@ class Block(object):
 
 class Tetris(display.App):
     framerate = 10
-    def __init__(self, disp):
-        display.App.__init__(self, disp)
+
+    def __init__(self, *a, **kw):
+        display.App.__init__(self, *a, **kw)
 
         self.shapes = [
             { # T
@@ -276,7 +275,7 @@ class Tetris(display.App):
                 self.currentBlock.rotateRight()
                 self.drawBlock()
 
-            if self.game_over and (event.button == 9):
+            if self.game_over and (event.button == 8):
                 self.game_over = False
                 self.newField()
                 self.getBlock()
