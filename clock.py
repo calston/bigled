@@ -30,7 +30,8 @@ class Clock(display.App):
         self.weather_age = 0
         self.weather = {}
 
-        self.font = pygame.font.Font("fonts/DejaVuSansMono.ttf", 8)
+        self.font = pygame.font.Font("fonts/5x7.pcf", 7)
+
 
         self.config = yaml.load(open('config.yml').read(), Loader=yaml.BaseLoader)
 

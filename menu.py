@@ -29,7 +29,7 @@ class Menu(display.App):
 
         self.selected = 0
 
-        self.font = pygame.font.Font("fonts/DejaVuSansMono.ttf", 8)
+        self.font = pygame.font.Font("fonts/5x7.pcf", 7)
 
     def draw(self, surface):
         itime = self.font.render(time.strftime('%H:%M:%S'), False, (0, 128, 0))
