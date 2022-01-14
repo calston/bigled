@@ -1,7 +1,9 @@
 import serial
 import colorsys
 import pygame
+import os
 
+os.environ['SDL_VIDEODRIVER'] = 'dummy'
 
 def hsv(h, s, v):
     return tuple(map(lambda x: int(x*255), colorsys.hsv_to_rgb(h, s, v)))
