@@ -70,9 +70,9 @@ class Clock(display.App):
             conditions = 'Rain'
         icon = self.weather_icons[conditions]
 
-        surface.blit(icon, (1, 1))
-        surface.blit(itime, (40, 0))
-        surface.blit(itemp, (18, 0))
+        surface.blit(icon, (1, 2))
+        surface.blit(itime, (40, 5))
+        surface.blit(itemp, (18, 5))
 
 
 if __name__=="__main__":
